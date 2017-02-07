@@ -1,0 +1,254 @@
+  
+<div ng-if="!columns"  class="jumbotron">
+        <h1>Customizable-Dash</h1>
+        <p class="lead">Upload your data in JSON format and create your own dashboard</p>
+        <p class="lead"></p>
+        <p>
+        <input type="file" accept=".json" class="btn btn-lg btn-success" on-read-file="showContent($fileContent)" ></p>
+</div>
+
+
+
+  <div ng-if="columns"  id="page-wrapper" ng-class="{'open': toggle}" ng-cloak>
+
+    <!-- Sidebar -->
+    <div  id="sidebar-wrapper" >
+      <ul class="sidebar">
+        <li class="sidebar-main">
+          <a href="#/" ng-click="toggle = !toggle">
+            Dashboard
+            <span class="menu-icon glyphicon glyphicon-transfer"></span>
+          </a>
+        </li>
+        <li class="sidebar-list">
+          <a data-toggle="tab" href="#home">Dashboard <span class="menu-icon glyphicon glyphicon-dashboard"></span></a>
+        </li>
+        <li class="sidebar-list">
+          <a data-toggle="tab" href="#table">Tables <span class="menu-icon glyphicon glyphicon-th"></span></a>
+        </li>
+        <li class="sidebar-list">
+              <a href="#/" data-toggle="modal" data-target="#lineChartModal">Line Charts</a>  
+        </li>
+        
+        <li class="sidebar-list">
+            <a href="#/" data-toggle="modal" data-target="#pieBarModal">Pie and Bar Charts</a>  
+        </li>
+        
+        <li class="sidebar-list">
+              <a href="#/" data-toggle="modal" data-target="#multiBarChartModal">Multi Bar Charts</a>  
+        </li> 
+
+        <li class="sidebar-list">
+              <a href="#/" data-toggle="modal" data-target="#boxPlotModal">Box Plot</a>  
+        </li>       
+        
+      </ul>
+     
+    </div>
+    <!-- End Sidebar -->
+
+    <div id="content-wrapper">
+      <div  class="page-content">        
+
+        <!-- Main Content -->
+        <div >
+         <div class="tab-content">
+              <div id="dashboard" class="tab-pane fade in active">
+                <h3>Dashboard</h3>                
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteDashModal">Clear Dashboard</button>
+                <br/><br/>
+                <p>
+
+                 <div gridster="gridsterOptions">
+        <ul>
+          <li gridster-item="widget" ng-repeat="widget in dashboard.widgets">
+            <div class="box">            
+              <div class="box-header">
+                <h5>{{ widget.name }}</h5>
+                <div class="box-header-btns pull-right">
+                  <a title="Remove chart" style="margin-right:20px;top: 9px;right: 10px;" ng-click="remove(widget)"><i class="glyphicon glyphicon-trash"></i></a>
+                </div>
+              </div>
+              <div class="box-content">
+                <nvd3 options="widget.chart.options" data="widget.chart.data" api="widget.chart.api" config="config" events="events" style="width:100% !important"></nvd3>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+                </p>
+              </div>
+              <div id="table" class="tab-pane fade">
+                <h3>Table</h3>
+                <form class="navbar-form " role="search">
+    
+                <div class="table-responsive">
+                <div class="form-group">
+            <input type="text" class="form-control" ng-model="searchText" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search">         </span></button>
+            </form><br/><br/>
+            <table class="table table-striped table-bordered" width="100%" cellspacing="0">
+              <thead>
+                <tr>
+                  <th ng-repeat="column in columns">{{column}}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="row in data | filter:searchText | limitTo: 50">
+                  <td ng-repeat="cell in row">{{cell}}</td>                  
+                </tr>                
+              </tbody>
+            </table>
+          </div>
+              </div>              
+            </div>
+
+
+        </div>
+
+      </div><!-- End Page Content -->
+    </div><!-- End Content Wrapper -->
+
+    <!--Line Chart Modal -->
+<div class="modal fade" id="lineChartModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Line Chart Form</h4>
+      </div>
+      <div class="modal-body">
+        <form>    
+   
+    <div ng-if="line_checkbox" ng-repeat="values in line_checkbox">      
+        <input type="radio" ng-model="filter[values[0]]" value="{{values[1]}}">
+        {{values[0] }} = {{values[1] }}      
+    </div>
+    <p>x-Axis</p>
+    <div ng-if="line_chart_x_value_list" ng-repeat="value in line_chart_x_value_list">      
+        <input type="checkbox" ng-model="xLineChart[value]" ng-click="checked_line_chart_x(value)">
+        {{value}}      
+    </div>
+    <p>y-Axis</p>
+    <div ng-repeat="number_item in number_items">      
+        <input type="checkbox" ng-model="linechart_row[number_item]">
+        {{number_item}}<br/>      
+    </div>
+    <input name="input_length" type="range" min="0" max="{{max}}" ng-model="dataset_length" ng-change="rangeChange(dataset_length)">
+    <label>{{dataset_length}}</label>    
+    </form> 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" ng-click="drawLineGraph()" class="btn btn-primary">Draw</button>
+      </div>
+    </div>
+  </div>
+</div><!-- End of Line Chart Modal -->
+
+
+<!--Bar and Pie Chart Modal -->
+<div class="modal fade" id="pieBarModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Pie Chart and Bar Chart</h4>
+      </div>
+      <div class="modal-body">
+        
+        <div ng-repeat="column in bar_pie_checkbox">      
+        <input type="checkbox" name="{{column}}" ng-model="checkBox[column]" ng-change="checked(column)">{{column}}<br/>     
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div><!-- End of Bar and Pie Chart Modal -->
+
+<!--Multi Bar Chart Modal -->
+<div class="modal fade" id="multiBarChartModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Multi Bar Chart</h4>
+      </div>
+      <div class="modal-body">
+        
+      <form>
+        <div ng-if="compare_x">
+        <p>Choose the first item</p>
+          <div ng-repeat="item in bar_pie_checkbox">            
+            <input type="checkbox" name="{{item}}" ng-model="checkBox_x[item]" ng-change="checked_x(item)">{{item}}           
+          </div>
+        </div>
+        <div ng-if="compare_y">
+        <p>Compare <b>{{x_value}}</b> with respect to:</p>
+          <div ng-repeat="item in y_values">
+            <input type="checkbox" name="{{item}}" ng-model="checkBox_y[item]" ng-change="checked_y(item)">{{item}}<br/>            
+          </div>
+          <div ng-if="number_items"><p>calculate total (optional)</p></div>
+          <div ng-repeat="number_item in number_items">
+            <input type="checkbox" name="{{number_item}}" ng-model="checkBox_numeric[number_item]" ng-change="checked_numeric_item(number_item)">{{number_item}}
+            <br/>
+          </div>          
+        </div>
+    </form>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button ng-click="drawMultiBarGraph()" type="button" class="btn btn-primary">Draw Chart</button>
+      </div>
+    </div>
+  </div>
+</div><!-- End of Multi Bar Chart Modal -->
+
+
+    <!--Box Plot Modal -->
+<div class="modal fade" id="boxPlotModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Box Plot Form</h4>
+      </div>
+      <div class="modal-body">
+
+        <p>Select items for a box plot</p>
+        <div ng-repeat="number_item in number_items">      
+            <input type="checkbox" ng-model="boxplot_row[number_item]">
+            {{number_item}}<br/>      
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button ng-click="drawBoxPlot()" type="button" class="btn btn-primary">Draw Chart</button>
+      </div>
+    </div>
+  </div>
+</div><!-- End of Box Plot Modal -->
+
+<!--Delete Dashboard Modal -->
+<div class="modal fade" id="deleteDashModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+    <div class="modal-body">
+      <p> Are you sure, you want to delete all of your charts you've done so far
+      and start all over again?</p>  
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button ng-click="clearDash()" type="button" class="btn btn-primary">Ok</button>
+      </div>
+    </div>
+  </div>
+</div><!-- Delete Dashboard Modal -->
+
+  </div><!-- End Page Wrapper -->
