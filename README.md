@@ -1,12 +1,15 @@
-# eeze-dash
+# Customizable-Dash
 
-This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
-version 0.15.1.
+Customizable-Dash is a browser based client side dashboard framework.
+
 
 ## Build & development
 
-Run `grunt` for building and `grunt serve` for preview.
+Run `grunt` for building and `grunt serve` for preview. After building the project go to the dist directory and 
 
-## Testing
 
-Running `grunt test` will run the unit tests with karma.
+
+
+
+This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
+version 0.15.1.
