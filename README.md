@@ -12,6 +12,7 @@ Run `grunt` for building and `grunt serve` for preview. After building the proje
 
 Using `grunt serve` the application should start on your default browser at [http://localhost:9000/#/](http://localhost:9000/#/)
 
+![Dashboard](https://github.com/eyobw/eeze-dash/blob/master/app/images/side_nav.png)
 
 MIT License
 
