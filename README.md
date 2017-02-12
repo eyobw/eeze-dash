@@ -9,6 +9,7 @@ If you wish to install the application on your computer, you need to have npm, g
 
 Run `grunt` for building and `grunt serve` for preview. After building the project go to the dist directory and open index.html file on browser. The application start without any problem. 
 
+Check this sample [Video](https://youtu.be/Vvy6F8RW4Io)
 
 Using `grunt serve` the application should start on your default browser at [http://localhost:9000/#/](http://localhost:9000/#/)
 
