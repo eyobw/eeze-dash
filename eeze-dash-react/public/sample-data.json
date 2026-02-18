@@ -1,0 +1,22 @@
+[
+  {"name": "Alice", "age": 30, "city": "Helsinki", "salary": 55000, "department": "Engineering", "gender": "F", "years_exp": 5},
+  {"name": "Bob", "age": 25, "city": "Helsinki", "salary": 48000, "department": "Marketing", "gender": "M", "years_exp": 3},
+  {"name": "Carol", "age": 35, "city": "Espoo", "salary": 62000, "department": "Engineering", "gender": "F", "years_exp": 8},
+  {"name": "Dave", "age": 28, "city": "Espoo", "salary": 51000, "department": "Sales", "gender": "M", "years_exp": 4},
+  {"name": "Eve", "age": 32, "city": "Helsinki", "salary": 58000, "department": "Engineering", "gender": "F", "years_exp": 6},
+  {"name": "Frank", "age": 27, "city": "Tampere", "salary": 47000, "department": "Marketing", "gender": "M", "years_exp": 2},
+  {"name": "Grace", "age": 40, "city": "Tampere", "salary": 70000, "department": "Engineering", "gender": "F", "years_exp": 12},
+  {"name": "Hank", "age": 33, "city": "Helsinki", "salary": 54000, "department": "Sales", "gender": "M", "years_exp": 7},
+  {"name": "Iris", "age": 29, "city": "Espoo", "salary": 52000, "department": "Marketing", "gender": "F", "years_exp": 4},
+  {"name": "Jack", "age": 38, "city": "Tampere", "salary": 65000, "department": "Engineering", "gender": "M", "years_exp": 10},
+  {"name": "Kate", "age": 26, "city": "Helsinki", "salary": 46000, "department": "Sales", "gender": "F", "years_exp": 2},
+  {"name": "Leo", "age": 45, "city": "Espoo", "salary": 75000, "department": "Engineering", "gender": "M", "years_exp": 15},
+  {"name": "Mia", "age": 31, "city": "Helsinki", "salary": 57000, "department": "Marketing", "gender": "F", "years_exp": 5},
+  {"name": "Nick", "age": 36, "city": "Tampere", "salary": 60000, "department": "Sales", "gender": "M", "years_exp": 9},
+  {"name": "Olivia", "age": 24, "city": "Espoo", "salary": 44000, "department": "Engineering", "gender": "F", "years_exp": 1},
+  {"name": "Paul", "age": 42, "city": "Helsinki", "salary": 68000, "department": "Engineering", "gender": "M", "years_exp": 14},
+  {"name": "Quinn", "age": 34, "city": "Tampere", "salary": 56000, "department": "Marketing", "gender": "F", "years_exp": 7},
+  {"name": "Ryan", "age": 29, "city": "Espoo", "salary": 50000, "department": "Sales", "gender": "M", "years_exp": 3},
+  {"name": "Sara", "age": 37, "city": "Helsinki", "salary": 63000, "department": "Engineering", "gender": "F", "years_exp": 11},
+  {"name": "Tom", "age": 41, "city": "Tampere", "salary": 67000, "department": "Engineering", "gender": "M", "years_exp": 13}
+]

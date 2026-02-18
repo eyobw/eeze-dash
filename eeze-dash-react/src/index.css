@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
+@import "tailwindcss";
+
+/* Base styles */
+html {
+  overflow-y: scroll;
+}
+
+body {
+  margin: 0;
+  background: #f3f3f3;
+  font-family: "Montserrat", system-ui, sans-serif;
+  color: #333333;
+}
+
+.font-montserrat {
+  font-family: "Montserrat", sans-serif;
+}
+
+/* Widget card styles */
+.widget-card {
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  border-radius: 2px;
+}
+
+/* Loading animation */
+.loading {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  margin: 100px auto;
+}
+
+.double-bounce1,
+.double-bounce2 {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #333;
+  opacity: 0.6;
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation: bounce 2s infinite ease-in-out;
+}
+
+.double-bounce2 {
+  animation-delay: -1s;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1);
+  }
+}
+
+/* Recharts tooltip z-index fix */
+.recharts-tooltip-wrapper {
+  z-index: 100;
+}
+
+/* react-grid-layout override to remove default resize handle styling conflict */
+.react-grid-item > .react-resizable-handle::after {
+  border-color: #999;
+}

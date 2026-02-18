@@ -1,13 +1,24 @@
 # Customizable-Dash
 
-Customizable-Dash is a browser based client side dashboard framework.
+Customizable-Dash is a browser-based, client-side dashboard framework.
 
+## React Version (eeze-dash-react/)
 
-## Build & development
+The application has been rebuilt with **React 19**, **TypeScript**, **Recharts**, and **Tailwind CSS**. See [`eeze-dash-react/README.md`](eeze-dash-react/README.md) for full details.
 
-If you wish to install the application on your computer, you need to have npm, grunt and bower installed on your computer. Then install all dependencies using the following command on terminal.
+```bash
+cd eeze-dash-react
+npm install
+npm run dev
+```
 
-Run `grunt` for building and `grunt serve` for preview. After building the project go to the dist directory and open index.html file on browser. The application start without any problem. 
+Features: JSON/CSV upload, 10 chart types, sortable/paginated data table, drag-and-drop dashboard grid, session persistence.
+
+## Legacy AngularJS Version
+
+The original AngularJS version requires npm, grunt, and bower.
+
+Run `grunt` for building and `grunt serve` for preview. After building the project go to the dist directory and open index.html file on browser.
 
 Check this sample [Video](https://youtu.be/Vvy6F8RW4Io)
 
